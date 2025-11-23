@@ -1,4 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio (Next.js)
+
+This repository is a minimal personal portfolio scaffold built with Next.js (app directory).
+
+What was added:
+
+- `src/components` — small presentational components for About, Skills, Experience, Projects, Contact, and Nav
+- `src/data/siteData.js` — example data to populate the components
+- Updated `src/app/page.js` and `src/app/layout.js` to wire the sections
+
+Note: Components were inlined into their respective route pages and the global navigation was moved into `src/app/layout.js`. The `src/components` folder has been removed to keep the project structure focused on pages and layouts.
+
+How to run (Windows PowerShell):
+
+```powershell
+npm install
+npm run dev
+```
+
+Notes:
+
+- The contact section currently uses a `mailto:` link. If you want a contact form, we can add a client component with form handling and an API route next.
+- Keep the content in `src/data/siteData.js` up to date with your actual experiences and projects.
+  This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
