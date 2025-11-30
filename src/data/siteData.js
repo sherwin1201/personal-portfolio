@@ -1,36 +1,34 @@
 export const experience = [
 	{
-		company: "Company A",
-		role: "Frontend Engineer",
-		range: "2022 — Present",
+		company: "Numino Labs Pvt. Ltd.",
+		workType: "Full time",
+		role: "Product Delivery Engineer",
+		website: "https://numinolabs.com/",
+		address: "Goa, India",
+		startDate: "2022-09-12",
+		endDate: null,
+		projects: ["kinlink", "avetta-mobile", "numino-leave-management"],
 		summary:
-			"Built UI components and improved performance for customer-facing web apps.",
+			"Led full-stack mobile app development, collaborated with clients, mentored developers, contributed to major projects, supported hiring, enforced clean coding practices, and improved internal systems.",
 	},
 	{
-		company: "Company B",
-		role: "Full Stack Developer",
-		range: "2020 — 2022",
-		summary: "Built internal tools and APIs used by the engineering team.",
-	},
-];
-
-export const projects = [
-	{
-		name: "Project One",
-		year: 2024,
+		company: "Imagine Works",
+		workType: "Internship",
+		role: "Frontend Web Developer",
+		website: "https://www.linkedin.com/company/imagine-works/",
+		address: "Goa, India",
+		startDate: "2021-06-03",
+		endDate: "2021-09-20",
 		summary:
-			"A small demo app demonstrating a feature and architecture decisions.",
-		link: "#",
-	},
-	{
-		name: "Project Two",
-		year: 2023,
-		summary: "A tool that automated part of the team's workflow.",
+			"Delivered diverse assignments and mini-projects across multiple domains with consistent quality and efficiency using technlogies such as PHP, Laravel, Vue, Lumen and Symfony.",
 	},
 ];
 
 export const contact = {
-	email: "you@example.com",
+	email: "sherwfernand@gmail.com",
+	phone: "+91 9168493859",
+	github: "https://github.com/sherwin1201",
+	linkedin: "https://www.linkedin.com/in/sherwin-fernandes-815613168/",
 };
 
 export const quickStats = [
@@ -81,6 +79,13 @@ export const skills = [
 		experience: 0.5,
 		icon: "skills/nodejs.svg",
 		fill: "#8CC84B",
+	},
+	{
+		skill: "Firebase",
+		category: "backend",
+		experience: 0.7,
+		icon: "skills/firebase.svg",
+		fill: "#FFA000",
 	},
 	{
 		skill: "GraphQL",
@@ -137,5 +142,60 @@ export const skills = [
 		experience: 0.8,
 		icon: "skills/problem-solving.svg",
 		fill: "#00B4D8",
+	},
+];
+
+export const work = [
+	{
+		id: "avetta-mobile",
+		projectName: "Avetta Mobile",
+		desription:
+			"Avetta provides a platform for managing supply chain risk, helping clients prequalify and monitor contractors and suppliers",
+		cover: "work/avetta.jpg",
+		relevant: true,
+		tags: ["React Native", "Redux", "Firebase", "Fullstory"],
+		links: {
+			android:
+				"https://play.google.com/store/apps/details?id=com.avetta.android.avettaworkermanagement",
+			ios: "https://apps.apple.com/us/app/avetta-mobile/id1536748796",
+		},
+	},
+	{
+		id: "kinlink",
+		projectName: "Kinlink",
+		desription:
+			"Kinlink is a social networking app where you can find neigbours around you and form communities based on shared interests",
+		cover: "work/kinlink.jpg",
+		relevant: true,
+		tags: ["React Native", "GraphQL", "Neo4j", "NodeJS", "AWS"],
+		links: {
+			android: "https://play.google.com/store/apps/details?id=com.kinlink",
+			ios: "https://apps.apple.com/us/app/kinlink/id6450735314",
+		},
+	},
+	{
+		id: "numino-leave-management",
+		projectName: "Numino Leave Management - Mobile App",
+		desription:
+			"An internal project of Numino Labs to manage employee leaves requests and approvals",
+		cover: "work/kinlink.jpg",
+		relevant: false,
+		tags: ["React Native", "React Query", "Redux", "Google Auth API"],
+		links: {
+			android:
+				"https://play.google.com/store/apps/details?id=com.numino.leavemanagement&hl=en",
+		},
+	},
+	{
+		id: "sign-language-apprehension",
+		projectName: "Sign Language Apprehension",
+		desription:
+			"A univeristy project to detect sign language gestures for 37 signs of the ASL alphabet",
+		cover: "work/kinlink.jpg",
+		relevant: false,
+		tags: ["Python", "Tensorflow", "Keras", "OpenCV"],
+		links: {
+			reference: "https://ieeexplore.ieee.org/document/9984249",
+		},
 	},
 ];

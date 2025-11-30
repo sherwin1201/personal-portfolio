@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 const navLinks = [
 	{ href: "/", label: "Home" },
 	{ href: "/skills", label: "Skills" },
+	{ href: "/work", label: "Work" },
 	{ href: "/experience", label: "Experience" },
-	{ href: "/projects", label: "Projects" },
 	{ href: "/contact", label: "Contact" },
 ];
 

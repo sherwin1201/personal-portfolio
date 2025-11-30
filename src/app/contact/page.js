@@ -1,19 +1,74 @@
+import Image from "next/image";
 import { contact } from "../../data/siteData";
 
 export default function ContactPage() {
+	const recipient = contact?.email ?? "you@example.com";
+
 	return (
 		<main>
-			<div>
-				<h1 className="text-2xl font-semibold mb-3">Contact</h1>
-				<p className="text-zinc-700 dark:text-zinc-300">
-					If you'd like to reach out, send an email:
-				</p>
-				<div className="mt-3">
+			<div className="mx-auto max-w-2xl px-6 py-24 flex flex-col items-center text-center">
+				<h1 className="text-2xl font-semibold mb-6">
+					Feel free to reach out to me
+				</h1>
+
+				<div className="flex flex-col gap-4">
 					<a
-						href={`mailto:${contact?.email ?? "you@example.com"}`}
-						className="inline-block rounded-md bg-black px-4 py-2 text-sm text-white hover:opacity-90"
+						href={`mailto:${recipient}`}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="flex items-center gap-2 rounded-md border border-gray-700 px-4 py-2 text-sm text-white hover:opacity-90"
 					>
-						Email me
+						<Image
+							src="/contact/email.svg"
+							alt="Github icon"
+							width={20}
+							height={20}
+						/>
+						{contact.email}
+					</a>
+
+					<div
+						target="_blank"
+						rel="noopener noreferrer"
+						className="flex items-center gap-2 rounded-md border border-gray-700 px-4 py-2 text-sm text-white hover:opacity-90"
+					>
+						<Image
+							src="/contact/phone.svg"
+							alt="Github icon"
+							width={18}
+							height={18}
+						/>
+						{contact.phone}
+					</div>
+				</div>
+
+				<div className="mt-8 flex flex-wrap justify-center gap-3">
+					<a
+						href={contact.github}
+						title="Github"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<Image
+							src="/contact/github.svg"
+							alt="Github icon"
+							width={24}
+							height={24}
+						/>
+					</a>
+
+					<a
+						href={contact.linkedin}
+						title="Linkedin"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<Image
+							src="/contact/linkedin.svg"
+							alt="Linkedin icon"
+							width={24}
+							height={24}
+						/>
 					</a>
 				</div>
 			</div>

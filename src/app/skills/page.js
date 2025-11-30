@@ -18,14 +18,16 @@ export default function SkillsPage() {
 	return (
 		<main>
 			<div className="mx-auto max-w-4xl px-6 py-12">
-				<h1 className="text-2xl font-semibold mb-6 text-center">Skills</h1>
+				<h1 className="text-2xl font-semibold mb-6 text-center">
+					What I work best with
+				</h1>
 
 				{Object.keys(groupedSkills).map((group) => (
 					<section
 						key={group}
 						className="mb-8 border border-gray-700 p-4 rounded-lg"
 					>
-						<h2 className="text-lg font-medium mb-4 text-center">
+						<h2 className="text-lg font-semibold mb-4 text-center">
 							{SKILL_GROUPS[group]}
 						</h2>
 						<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
