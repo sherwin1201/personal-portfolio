@@ -1,17 +1,12 @@
 "use client";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import "./globals.css";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
+const inter = Inter({
+	variable: "--font-inter",
 	subsets: ["latin"],
 });
 
@@ -30,7 +25,7 @@ export default function Root({ children }) {
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+				className={`${inter.className} ${inter.variable} antialiased`}
 			>
 				{/* Desktop fixed right nav */}
 				<nav className="hidden md:fixed md:top-0 md:right-0 md:h-full md:flex md:flex-col md:items-center md:justify-center md:shadow-lg md:w-1/4 z-40">
