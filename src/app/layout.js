@@ -28,7 +28,7 @@ export default function Root({ children }) {
 				className={`${inter.className} ${inter.variable} antialiased`}
 			>
 				{/* Desktop fixed right nav */}
-				<nav className="hidden md:fixed md:top-0 md:right-0 md:h-full md:flex md:flex-col md:items-center md:justify-center md:shadow-lg md:w-1/4 z-40">
+				<nav className="hidden md:fixed md:top-0 md:right-0 md:h-full md:flex md:flex-col md:items-center md:justify-center md:shadow-lg md:w-1/4 md:bg-zinc-900 md:text-zinc-100 dark:md:bg-zinc-100 dark:md:text-zinc-900 z-40">
 					<div className="flex flex-col gap-6 w-full items-center">
 						{navLinks.map((link) => {
 							const isActive =
@@ -38,7 +38,7 @@ export default function Root({ children }) {
 							const base =
 								"px-4 py-2 w-full text-center text-lg hover:scale-110 transform transition duration-200";
 							const active = "text-blue-600 dark:text-blue-400 font-semibold";
-							const inactive = "text-zinc-700 dark:text-zinc-300 font-medium";
+							const inactive = "text-zinc-100 dark:text-zinc-900 font-medium";
 
 							return (
 								<Link
@@ -86,10 +86,10 @@ export default function Root({ children }) {
 							className="fixed inset-0 bg-black/40 backdrop-blur-sm"
 							onClick={() => setDrawerOpen(false)}
 						/>
-						<nav className="relative ml-auto w-64 max-w-full h-full bg-white dark:bg-zinc-900 shadow-lg flex flex-col items-center justify-center gap-6 p-8 animate-slide-in">
+						<nav className="relative ml-auto w-64 max-w-full h-full bg-zinc-900 text-zinc-100 dark:bg-zinc-100 dark:text-zinc-900 shadow-lg flex flex-col items-center justify-center gap-6 p-8 animate-slide-in">
 							<button
 								aria-label="Close navigation menu"
-								className="absolute top-4 right-4 p-2 rounded-md border bg-zinc-100 dark:bg-zinc-800"
+								className="absolute top-4 right-4 p-2 rounded-md bg-zinc-800 dark:bg-zinc-200"
 								onClick={() => setDrawerOpen(false)}
 							>
 								<svg
@@ -115,7 +115,7 @@ export default function Root({ children }) {
 								const base = "px-4 py-2 w-full text-center text-lg";
 								const active = "text-blue-600 dark:text-blue-400 font-semibold";
 								const inactive =
-									"text-zinc-700 dark:text-zinc-300 hover:underline font-medium";
+									"text-zinc-100 dark:text-zinc-900 hover:underline font-medium";
 
 								return (
 									<Link
