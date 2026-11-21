@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { work } from "../../data/siteData";
 import ProjectLinks from "./components/ProjectLinks";
 import ProjectTags from "./components/ProjectTags";
+import Card from "@/components/Card";
 
 export default function WorkPage() {
 	const [showRelevantOnly, setShowRelevantOnly] = useState(true);
@@ -43,10 +43,7 @@ export default function WorkPage() {
 
 				<div className="flex flex-col gap-6">
 					{filteredWork.map((w) => (
-						<section
-							key={w.projectName}
-							className="mb-4 rounded-lg border border-gray-700 p-4"
-						>
+						<Card as="article" key={w.projectName} className="mb-4">
 							<div className="flex flex-col lg:flex-row items-center gap-8">
 								{/* <div className="rounded-lg overflow-hidden">
 									{w.cover ? (
@@ -79,7 +76,7 @@ export default function WorkPage() {
 									</div>
 								</div>
 							</div>
-						</section>
+						</Card>
 					))}
 				</div>
 			</div>

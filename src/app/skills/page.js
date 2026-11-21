@@ -4,6 +4,7 @@ import { useState } from "react";
 import { skills } from "../../data/siteData";
 import { SkillRing } from "./components/SkillRing";
 import { SKILL_GROUPS } from "@/constants";
+import Card from "@/components/Card";
 
 export default function SkillsPage() {
 	const [groupBy, setGroupBy] = useState("category");
@@ -23,10 +24,7 @@ export default function SkillsPage() {
 				</h1>
 
 				{Object.keys(groupedSkills).map((group) => (
-					<section
-						key={group}
-						className="mb-8 border border-gray-700 p-4 rounded-lg"
-					>
+					<Card as="section" key={group} className="mb-8">
 						<h2 className="text-lg font-semibold mb-4 text-center">
 							{SKILL_GROUPS[group]}
 						</h2>
@@ -45,7 +43,7 @@ export default function SkillsPage() {
 								</div>
 							))}
 						</div>
-					</section>
+					</Card>
 				))}
 			</div>
 		</main>

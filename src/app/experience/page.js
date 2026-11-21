@@ -2,6 +2,7 @@ import Image from "next/image";
 import { experience } from "../../data/siteData";
 import ExperienceDuration from "./components/ExperienceDuration";
 import ExperienceTimeline from "./components/ExperienceTimeline";
+import Card from "@/components/Card";
 
 function formatDate(dateString) {
 	if (!dateString) return null;
@@ -28,7 +29,7 @@ export default function ExperiencePage() {
 				<div className="relative">
 					{/* Single vertical timeline spanning the whole list */}
 					<span
-						className="absolute left-2 top-0 bottom-0 w-px bg-gray-700"
+						className="absolute left-5 top-0 bottom-0 w-px bg-gray-700 border"
 						aria-hidden
 					/>
 					<div className="flex flex-col gap-6">
@@ -37,8 +38,13 @@ export default function ExperiencePage() {
 								<div key={e.company} className="flex items-start gap-4">
 									{/* checkpoint column (outside main content) */}
 									<div className="flex justify-center flex-shrink-0">
-										<span className="relative z-10 inline-flex items-center justify-center w-4 h-4 rounded-full bg-white dark:bg-black border border-primary">
-											<span className="w-2 h-2 rounded-full bg-primary" />
+										<span className="relative border z-10 flex items-center justify-center w-10 h-10 bg-white dark:bg-black rounded-full">
+											<Image
+												src="/checkpoint.png"
+												width={20}
+												height={20}
+												alt="Checkpoint"
+											/>
 										</span>
 									</div>
 
@@ -53,7 +59,7 @@ export default function ExperiencePage() {
 										/>
 									</div>
 
-									<section className="flex-1 mb-0 rounded-lg border border-gray-700 p-4">
+									<Card as="article" className="flex-1 mb-0">
 										<div className="flex flex-row justify-between items-start">
 											<div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-2">
 												<div>
@@ -104,7 +110,7 @@ export default function ExperiencePage() {
 												{e.workType}
 											</p>
 										</div>
-									</section>
+									</Card>
 								</div>
 							);
 						})}
