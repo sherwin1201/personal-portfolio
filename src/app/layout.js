@@ -1,8 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
-import Link from "next/link";
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import "./globals.css";
 
 const inter = Inter({
@@ -11,16 +9,45 @@ const inter = Inter({
 });
 
 const navLinks = [
-	{ href: "/", label: "Home" },
-	{ href: "/skills", label: "Skills" },
-	{ href: "/work", label: "Work" },
-	{ href: "/experience", label: "Experience" },
-	{ href: "/contact", label: "Contact" },
+	{ id: "home", label: "Home" },
+	{ id: "skills", label: "Skills" },
+	{ id: "work", label: "Work" },
+	{ id: "experience", label: "Experience" },
+	{ id: "contact", label: "Contact" },
 ];
 
 export default function Root({ children }) {
 	const [drawerOpen, setDrawerOpen] = useState(false);
-	const pathname = usePathname();
+	const [activeSection, setActiveSection] = useState("home");
+
+	useEffect(() => {
+		const sections = navLinks
+			.map(({ id }) => document.getElementById(id))
+			.filter(Boolean);
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const visible = entries
+					.filter((entry) => entry.isIntersecting)
+					.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+				if (visible[0]) setActiveSection(visible[0].target.id);
+			},
+			{ rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.1, 0.25, 0.5] }
+		);
+
+		sections.forEach((section) => observer.observe(section));
+		return () => observer.disconnect();
+	}, []);
+
+	const scrollToSection = (id) => {
+		document.getElementById(id)?.scrollIntoView({
+			behavior: "smooth",
+			block: "start",
+		});
+		setActiveSection(id);
+		setDrawerOpen(false);
+	};
 
 	return (
 		<html lang="en">
@@ -31,25 +58,22 @@ export default function Root({ children }) {
 				<nav className="hidden md:fixed md:top-0 md:right-0 md:h-full md:flex md:flex-col md:items-center md:justify-center md:shadow-lg md:w-1/4 md:bg-zinc-900 md:text-zinc-100 dark:md:bg-zinc-100 dark:md:text-zinc-900 z-40">
 					<div className="flex flex-col gap-6 w-full items-center">
 						{navLinks.map((link) => {
-							const isActive =
-								pathname === link.href ||
-								pathname === link.href + "/" ||
-								(link.href !== "/" && pathname?.startsWith(link.href));
+							const isActive = activeSection === link.id;
 							const base =
 								"px-4 py-2 w-full text-center text-lg hover:scale-110 transform transition duration-200";
 							const active = "text-blue-600 dark:text-blue-400 font-semibold";
 							const inactive = "text-zinc-100 dark:text-zinc-900 font-medium";
 
 							return (
-								<Link
-									key={link.href}
-									href={link.href}
+								<button
+									key={link.id}
+									type="button"
 									className={`${base} ${isActive ? active : inactive}`}
-									onClick={() => setDrawerOpen(false)}
-									aria-current={isActive ? "page" : undefined}
+									onClick={() => scrollToSection(link.id)}
+									aria-current={isActive ? "location" : undefined}
 								>
 									{link.label}
-								</Link>
+								</button>
 							);
 						})}
 					</div>
@@ -108,25 +132,22 @@ export default function Root({ children }) {
 								</svg>
 							</button>
 							{navLinks.map((link) => {
-								const isActive =
-									pathname === link.href ||
-									pathname === link.href + "/" ||
-									(link.href !== "/" && pathname?.startsWith(link.href));
+								const isActive = activeSection === link.id;
 								const base = "px-4 py-2 w-full text-center text-lg";
 								const active = "text-blue-600 dark:text-blue-400 font-semibold";
 								const inactive =
 									"text-zinc-100 dark:text-zinc-900 hover:underline font-medium";
 
 								return (
-									<Link
-										key={link.href}
-										href={link.href}
+									<button
+										key={link.id}
+										type="button"
 										className={`${base} ${isActive ? active : inactive}`}
-										onClick={() => setDrawerOpen(false)}
-										aria-current={isActive ? "page" : undefined}
+										onClick={() => scrollToSection(link.id)}
+										aria-current={isActive ? "location" : undefined}
 									>
 										{link.label}
-									</Link>
+									</button>
 								);
 							})}
 						</nav>
@@ -134,8 +155,8 @@ export default function Root({ children }) {
 				)}
 
 				{/* Main content centered vertically and horizontally, with right margin for nav */}
-				<div className="min-h-screen flex items-center justify-center md:mr-48 md:w-3/4 md:border-r border-gray-700">
-					<div className="md:w-3/4">{children}</div>
+				<div className="md:mr-[25%] md:w-3/4 md:border-r border-gray-700">
+					{children}
 				</div>
 
 				{/* Simple slide-in animation for drawer */}

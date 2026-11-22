@@ -3,16 +3,17 @@
 import PrimaryButton from "@/components/Button";
 import { quickStats } from "@/data/siteData";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { QuickStat } from "./components/QuickStat";
+import SkillsSection from "./components/SkillsSection";
+import WorkSection from "./components/WorkSection";
+import ExperienceSection from "./components/ExperienceSection";
+import ContactSection from "./components/ContactSection";
 
 export default function Home() {
-	const router = useRouter();
-
 	return (
 		<main>
-			<div className="min-h-screen flex items-center justify-center text-foreground">
-				<div className="mx-auto px-6 py-24">
+			<section id="home" data-section className="min-h-screen flex items-center justify-center text-foreground scroll-mt-0">
+				<div className="mx-auto max-w-4xl px-6 py-24">
 					<div className="flex flex-col-reverse md:flex-row items-center gap-8 md:items-start">
 						<div className="md:flex-1 text-center md:text-left">
 							<h1 className="text-6xl font-extrabold leading-tight mb-2">
@@ -35,7 +36,13 @@ export default function Home() {
 							</div>
 
 							<div className="w-full mt-8 flex justify-center md:justify-start items-center">
-								<PrimaryButton onClick={() => router.push("contact")}>
+								<PrimaryButton
+									onClick={() =>
+										document
+											.getElementById("contact")
+											?.scrollIntoView({ behavior: "smooth", block: "start" })
+									}
+								>
 									Get in touch
 								</PrimaryButton>
 							</div>
@@ -54,7 +61,23 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</section>
+
+			<section id="skills" data-section className="min-h-screen scroll-mt-0">
+				<SkillsSection />
+			</section>
+
+			<section id="work" data-section className="min-h-screen scroll-mt-0">
+				<WorkSection />
+			</section>
+
+			<section id="experience" data-section className="min-h-screen scroll-mt-0">
+				<ExperienceSection />
+			</section>
+
+			<section id="contact" data-section className="min-h-screen flex items-center scroll-mt-0">
+				<ContactSection />
+			</section>
 		</main>
 	);
 }
