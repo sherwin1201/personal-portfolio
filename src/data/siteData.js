@@ -151,13 +151,13 @@ export const work = [
 		projectName: "Avetta Mobile",
 		desription:
 			"Avetta provides a platform for managing supply chain risk, helping clients prequalify and monitor contractors and suppliers",
-		cover: "work/avetta.jpg",
+		cover: "work/avetta.png",
 		relevant: true,
 		tags: ["React Native", "Redux", "Firebase", "Fullstory"],
 		links: {
 			android:
 				"https://play.google.com/store/apps/details?id=com.avetta.android.avettaworkermanagement",
-			ios: "https://apps.apple.com/us/app/avetta-mobile/id1536748796",
+			ios: "https://apps.apple.com/in/app/avetta-mobile/id1536748796",
 		},
 	},
 	{
@@ -165,7 +165,7 @@ export const work = [
 		projectName: "Kinlink",
 		desription:
 			"Kinlink is a social networking app where you can find neigbours around you and form communities based on shared interests",
-		cover: "work/kinlink.jpg",
+		cover: "work/kinlink.png",
 		relevant: true,
 		tags: ["React Native", "GraphQL", "Neo4j", "NodeJS", "AWS"],
 		links: {
@@ -178,7 +178,7 @@ export const work = [
 		projectName: "Numino Leave Management - Mobile App",
 		desription:
 			"An internal project of Numino Labs to manage employee leaves requests and approvals",
-		cover: "work/kinlink.jpg",
+		cover: "work/numino-leave-management.png",
 		relevant: false,
 		tags: ["React Native", "React Query", "Redux", "Google Auth API"],
 		links: {

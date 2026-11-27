@@ -1,14 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { work } from "@/data/siteData";
 import ProjectLinks from "@/app/work/components/ProjectLinks";
-import ProjectTags from "@/app/work/components/ProjectTags";
 import Card from "@/components/Card";
 
 export default function WorkSection() {
 	const [showRelevantOnly, setShowRelevantOnly] = useState(true);
+	const firstNonRelevantRef = useRef(null);
+	const firstNonRelevant = work.find((item) => !item.relevant);
 	const filteredWork = showRelevantOnly ? work.filter((item) => item.relevant) : work;
+
+	useEffect(() => {
+		if (!showRelevantOnly) {
+			firstNonRelevantRef.current?.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			});
+		}
+	}, [showRelevantOnly]);
 
 	return (
 		<div className="flex flex-col mx-auto max-w-4xl px-6 py-12">
@@ -37,17 +48,62 @@ export default function WorkSection() {
 
 			<div className="flex flex-col gap-6">
 				{filteredWork.map((item) => (
-					<Card as="article" key={item.projectName} className="mb-4">
-						<div className="flex flex-col lg:flex-row items-center gap-8">
-							<div className="flex-1">
-								<div className="flex justify-start">
-									<h3 className="text-lg font-semibold text-primary">
+					<Card
+						as="article"
+						key={item.projectName}
+						className="mb-4 overflow-hidden !p-0"
+					>
+						<div
+							ref={item === firstNonRelevant ? firstNonRelevantRef : undefined}
+							className="flex flex-col md:flex-row"
+						>
+							<div className="relative aspect-[4/3] w-full shrink-0 self-start bg-gray-800 md:w-3/5">
+								{item.cover && (
+									<Image
+										src={`/${item.cover}`}
+										alt={`${item.projectName} cover`}
+										fill
+										sizes="(max-width: 768px) 100vw, 60vw"
+										className="object-cover"
+										onLoad={(event) => {
+											const { naturalWidth, naturalHeight } = event.currentTarget;
+											event.currentTarget.parentElement?.style.setProperty(
+												"aspect-ratio",
+												`${naturalWidth} / ${naturalHeight}`,
+											);
+										}}
+										onError={(event) => {
+											event.currentTarget.style.display = "none";
+										}}
+									/>
+								)}
+							</div>
+							<div className="flex flex-1 flex-col gap-6 p-5 md:w-2/5 md:justify-between md:p-6">
+								<div>
+									<h3 className="text-lg font-semibold text-primary text-center">
 										{item.projectName}
 									</h3>
+									<p className="mt-2 text-sm text-gray-400">
+										{item.desription}
+									</p>
+									{(item.links?.reference ??
+										item.links?.android ??
+										item.links?.ios) && (
+										<a
+											href={
+												item.links.reference ??
+												item.links.android ??
+												item.links.ios
+											}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="mt-4 text-sm font-medium text-primary hover:underline"
+										>
+											Know More &gt;&gt;
+										</a>
+									)}
 								</div>
-								<p className="mt-2 text-sm text-gray-400">{item.desription}</p>
-								<div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mt-3 gap-6">
-									<ProjectTags tags={item.tags} />
+								<div className="flex flex-col items-start gap-4">
 									<div className="flex gap-4">
 										<ProjectLinks links={item.links} />
 									</div>
